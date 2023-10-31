@@ -33,10 +33,12 @@ def asignaturas_repetir(asignaturas, notas):
     return asignaturas_repetir
 
 if __name__ == "__main__":
+    # Entrada
     asignaturas = input("Ingrese las asignaturas del curso separadas por comas: ").split(',')
+    # Proceso
     notas = obtener_notas(asignaturas)
     asignaturas_repetir = asignaturas_repetir(asignaturas, notas)
-    
+    # Salida
     print("Asignaturas que debe repetir:")
     for asignatura in asignaturas_repetir:
         print(asignatura)
