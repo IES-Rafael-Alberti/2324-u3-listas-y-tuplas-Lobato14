@@ -10,14 +10,11 @@ def generar_mensajes_asignaturas(asignaturas):
     return "\n".join(mensajes)
 
 def mostrar_asignaturas(asignaturas):
-    mensajes = generar_mensajes_asignaturas(asignaturas)
-    return mensajes
+    return generar_mensajes_asignaturas(asignaturas)
 
 if __name__ == "__main__":
-    # Entrada
     asignaturas = []
     introducir_asig = "si"
-    # Proceso
     while introducir_asig.lower() == "si":
         asignatura = input("Escribe una asignatura: ")
         if asignatura.isalpha() and asignatura != "":
@@ -29,6 +26,5 @@ if __name__ == "__main__":
         else:
             print("Error: Ingresa un nombre válido para la asignatura.")
             introducir_asig = "si"
-    # Salida
     mensajes_asignaturas = mostrar_asignaturas(asignaturas)
     print(mensajes_asignaturas)
