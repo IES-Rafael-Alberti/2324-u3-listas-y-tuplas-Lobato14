@@ -1,10 +1,15 @@
-from src.Ejercicio_3 import solicitar_notas_asignaturas
 
-def test_solicitar_notas_asignaturas(mocker):
+from src.Ejercicio_3 import anadirAsignatura
+
+def test_anadirAsignatura():
     asignaturas = ["Matemáticas", "Física", "Química"]
-    notas_input = ["8", "9.5", "7.2"]
+    notas = [4, 6, 3]
+    assert anadirAsignatura(asignaturas, notas) == ["Matemáticas", "Química"]
 
-    mocker.patch("builtins.input", side_effect=notas_input)
+    asignaturas = ["Matemáticas", "Física", "Química"]
+    notas = [7, 8, 9]
+    assert anadirAsignatura(asignaturas, notas) == []
 
-    notas_obtenidas = solicitar_notas_asignaturas(asignaturas)
-    assert notas_obtenidas == notas_input
+    asignaturas = ["Matemáticas", "Física", "Química"]
+    notas = [5, 3, 5]
+    assert anadirAsignatura(asignaturas, notas) == ["Física"]

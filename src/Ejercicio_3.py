@@ -4,36 +4,43 @@
 # <asignatura> has sacado <nota> donde <asignatura> es cada una des las asignaturas de la 
 # lista y <nota> cada una de las correspondientes notas introducidas por el usuario.
 
-def ingresar_notas(asignaturas, notas_input):
+
+def anadirAsignatura(asignaturas, notas):
+    asignaturas_repetir = []
+    for indice in range(len(asignaturas)):
+        if notas[indice] < 5:
+            asignaturas_repetir.append(asignaturas[indice])
+    return asignaturas_repetir
+
+if __name__ == "__main__":
+    # Entrada
+    asignaturas = ["Matemáticas", "Física", "Química"]
     notas = []
-    for i in range(len(asignaturas)):
+    asignaturas_repetir = []
+    # Proceso
+    for asignatura in asignaturas:
         nota_valida = False
         while not nota_valida:
-            nota_input = notas_input[i].replace(",", ".", 1)  # Reemplaza ',' por '.' si es un número decimal
+            nota_input = input(f"Ingresa la nota de {asignatura}: ").replace(",", ".", 1)
             if nota_input.replace(".", "", 1).isdigit():
                 nota = float(nota_input)
                 if 0 <= nota <= 10:
                     notas.append(nota)
                     nota_valida = True
                 else:
-                    return "Error: La nota debe estar entre 0 y 10."
+                    print("Error: La nota debe estar entre 0 y 10.")
             else:
-                return "Error: Por favor, ingresa un número válido."
-    return notas
+                print("Error: Por favor, ingresa un número válido.")
 
-def solicitar_notas_asignaturas(asignaturas):
-    notas_input = []
-    for asignatura in asignaturas:
-        nota = input(f"Ingresa la nota de {asignatura}: ")
-        notas_input.append(nota)
-    return notas_input
+    resultado = anadirAsignatura(asignaturas)
 
-if __name__ == "__main__":
-    # Entrada
-    asignaturas = ["Matemáticas", "Física", "Química"]
-    notas_input = solicitar_notas_asignaturas(asignaturas)
-    # Proceso
-    notas = ingresar_notas(asignaturas, notas_input)
-    for i in range(len(asignaturas)):
-        # Salida
-        print(f"En {asignaturas[i]} has sacado {notas[i]}")
+    # Salida
+    for indice in range(len(asignaturas)):
+        print(f"En {asignaturas[indice]} has sacado {notas[indice]}")
+
+    if asignaturas_repetir:
+        print("Debes repetir las siguientes asignaturas:")
+        for asignatura in asignaturas_repetir:
+            print(asignatura)
+    else:
+        print("¡Felicidades! Has aprobado todas las asignaturas.")
